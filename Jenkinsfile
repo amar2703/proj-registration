@@ -88,6 +88,7 @@ pipeline {
              )
             }
          }
+/*
          stage('TRIVY FS SCAN') {
             steps {
                 sh "trivy fs . > trivyfs.txt"
@@ -108,7 +109,7 @@ pipeline {
          }
     }
 }
-/*	
+	
         stage("Trivy Image Scan") {
              steps {
                  script {
