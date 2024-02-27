@@ -107,7 +107,8 @@ pipeline {
              }
          }
     }
- /*        stage("Trivy Image Scan") {
+/*	
+        stage("Trivy Image Scan") {
              steps {
                  script {
 	                  sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ashfaque9x/java-registration-app:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
@@ -147,4 +148,5 @@ pipeline {
             to: 'ashfaque.s510@gmail.com',                              
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
       }
-    }*/   
+    } 
+*/
