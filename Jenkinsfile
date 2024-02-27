@@ -89,6 +89,7 @@ pipeline {
             }
          }
     }
+}
 /*
          stage('TRIVY FS SCAN') {
             steps {
