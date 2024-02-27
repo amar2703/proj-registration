@@ -155,4 +155,4 @@ pipeline {
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
       }
     } 
-/*
+*/
