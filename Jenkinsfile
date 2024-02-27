@@ -4,7 +4,7 @@ pipeline {
         maven 'maven'
     }
     environment {
-        SCANNER_HOME = tool 'sonarqube-scanner'
+        SCANNER_HOME = tool 'sonar-scanner'
         APP_NAME = "java-registration-app"
         RELEASE = "1.0.0"
         DOCKER_USER = "amardocker27"
@@ -33,7 +33,7 @@ pipeline {
          }
          stage ('SonarQube Analysis') {
             steps {
-              withSonarQubeEnv('sonar-scanner') {
+              withSonarQubeEnv('SonarQube-Server') {
                 dir('webapp'){
                 sh 'mvn -U clean install sonar:sonar'
                 }
