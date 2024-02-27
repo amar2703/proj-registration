@@ -89,7 +89,7 @@ pipeline {
             }
          }
     }
-}
+
 
          stage('TRIVY FS SCAN') {
             steps {
@@ -127,7 +127,7 @@ pipeline {
                  }
              }
          }
-
+}
 /*
          stage('Deploy to Kubernets'){
              steps{
