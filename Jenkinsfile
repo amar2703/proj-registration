@@ -8,7 +8,7 @@ pipeline {
         APP_NAME = "java-registration-app"
         RELEASE = "1.0.0"
         DOCKER_USER = "amardocker27"
-	 DOCKER_PASS = "amarrathod27"
+	 DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	
@@ -90,7 +90,7 @@ pipeline {
          }
     }
 }
-/*
+
          stage('TRIVY FS SCAN') {
             steps {
                 sh "trivy fs . > trivyfs.txt"
@@ -109,13 +109,13 @@ pipeline {
                  }
              }
          }
-    }
+    
 
 	
         stage("Trivy Image Scan") {
              steps {
                  script {
-	                  sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ashfaque9x/java-registration-app:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+	                  sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image amardocker27/java-registration-app:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
                  }
              }
          }
@@ -127,6 +127,8 @@ pipeline {
                  }
              }
          }
+
+/*
          stage('Deploy to Kubernets'){
              steps{
                  script{
@@ -141,7 +143,7 @@ pipeline {
              }
          }
         
-    }
+
     post {
       always {
         emailext attachLog: true,
@@ -153,4 +155,4 @@ pipeline {
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
       }
     } 
-*/
+/*
