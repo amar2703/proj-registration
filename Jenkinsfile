@@ -7,8 +7,8 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
         APP_NAME = "java-registration-app"
         RELEASE = "1.0.0"
-        DOCKER_USER = "ashfaque9x"
-        DOCKER_PASS = 'dockerhub'
+        DOCKER_USER = "amardocker27"
+        DOCKER_PASS = 'amarrathod27'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	
@@ -21,7 +21,7 @@ pipeline {
          }
          stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://ashfaque-9x@bitbucket.org/vtechbox/registration-app.git'
+                git branch: 'main', url: 'https://github.com/amar2703/proj-registration.git'
             }
          }
          stage ('Build Package')  {
@@ -33,7 +33,7 @@ pipeline {
          }
          stage ('SonarQube Analysis') {
             steps {
-              withSonarQubeEnv('SonarQube-Server') {
+              withSonarQubeEnv('sonar-scanner') {
                 dir('webapp'){
                 sh 'mvn -U clean install sonar:sonar'
                 }
@@ -43,7 +43,7 @@ pipeline {
          stage("Quality Gate") {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube-Token'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
                 }
             }
          }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog-server",
-                    url: "http://13.201.137.77:8082/artifactory",
+                    url: "http://18.226.172.226:8082//artifactory",
                     credentialsId: "jfrog"
                 )
 
@@ -106,7 +106,7 @@ pipeline {
                  }
              }
          }
-         stage("Trivy Image Scan") {
+ /*        stage("Trivy Image Scan") {
              steps {
                  script {
 	                  sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ashfaque9x/java-registration-app:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
@@ -146,5 +146,5 @@ pipeline {
             to: 'ashfaque.s510@gmail.com',                              
             attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
       }
-    }
+    }*/
 }    
