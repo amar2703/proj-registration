@@ -8,7 +8,7 @@ pipeline {
         APP_NAME = "java-registration-app"
         RELEASE = "1.0.0"
         DOCKER_USER = "amardocker27"
-	 DOCKER_PASS = 'dockerhub'
+	    DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	
@@ -43,7 +43,7 @@ pipeline {
          stage("Quality Gate") {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube2'
                 }
             }
          }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog-server",
-                    url: "http://18.226.172.226:8082//artifactory",
+                    url: "http://3.128.186.193:8082//artifactory",
                     credentialsId: "jfrog"
                 )
 
